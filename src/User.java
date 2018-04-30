@@ -28,13 +28,14 @@ public class User implements Serializable{
 
     private void prepareUserDir() {
         File newDir = new File(personalFilesLoc+username);
-        newDir.mkdir();
-        String[] files = {personalFilesLoc+username+"friends.txt",personalFilesLoc+username+"info.txt",personalFilesLoc+username+"posts.txt",personalFilesLoc+username+"requests.txt"};
-        for (String file:files) {
-            try {
-                newDir.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+        if(newDir.mkdir()){
+            File[] files = {new File(personalFilesLoc+username+"/friends.txt"),new File(personalFilesLoc+username+"/info.txt"),new File(personalFilesLoc+username+"/posts.txt"),new File(personalFilesLoc+username+"/requests.txt")};
+            for (File file:files) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -45,7 +46,7 @@ public class User implements Serializable{
 
     private void saveUserInfo() {
         try {
-            FileOutputStream fos = new FileOutputStream(personalFilesLoc+username);
+            FileOutputStream fos = new FileOutputStream(personalFilesLoc+username+"/info.txt");
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             bw.append(fullname+"$"+dob+"$"+livingLoc+"$"+eduInfo+"$"+username+"$"+password);
             bw.flush();
@@ -59,9 +60,23 @@ public class User implements Serializable{
 
     public void saveUser()  {
         try {
-            FileOutputStream fos = new FileOutputStream(usersFileLoc);
+            FileOutputStream fos = new FileOutputStream(usersFileLoc,true);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-            bw.append(this.username+"$"+this.password);
+            bw.append("\n"+this.username+"$"+this.password);
+            bw.flush();
+            bw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendFriendRequest(String friendName){
+        try {
+            FileOutputStream fos = new FileOutputStream(personalFilesLoc+friendName+"/requests.txt");
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            bw.append("\n"+this.username+" Wants to add you to their friend list");
             bw.flush();
             bw.close();
         } catch (FileNotFoundException e) {

@@ -104,10 +104,12 @@ public class ClientHandler extends Thread{
                         if (currentUser != null){
                             dos.writeUTF("Enter friend name");
                             String friendToAdd = dis.readUTF();
-
+                            if (checkUserExists(friendToAdd)){
+                                currentUser.sendFriendRequest(friendToAdd);
+                            }
                         }
                         else{
-                            System.err.println("Please Sign in first");
+                            dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
                         }
                         break;
 
@@ -143,6 +145,23 @@ public class ClientHandler extends Thread{
                         return true;
                     }
                 }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private boolean checkUserExists(String user_name) {
+        try {
+            FileInputStream fis = new FileInputStream(usersFileLoc);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            for(String line; (line = br.readLine()) != null; ){
+                if (line.contains(user_name)){
+                    return true;
+                }
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
