@@ -10,10 +10,13 @@ import java.util.Date;
  */
 public class ClientHandler extends Thread{
     final static String usersFileLoc = "Users.txt";
+    final static String personalFilesLoc = "UsersData/";
     DateFormat fordate = new SimpleDateFormat("yyyy/MM/dd");
+    String optionsAllowed = "AddFriend\nAddPost\nListFriends\nSendMessages\nShowWall\nRespondToRequest\nShowInbox\nSearch\nLogOff";
     final DataInputStream dis;
     final DataOutputStream dos;
     final Socket s;
+    User currentUser = null;
 
     // Constructor
     public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos)
@@ -92,7 +95,20 @@ public class ClientHandler extends Thread{
                             dos.writeUTF("Enter your password");
                             password = dis.readUTF();
                         }
-                        dos.writeUTF("You are now signed in :)");
+                        String userData = readUserInfo(user_name);
+                        currentUser = new User(user_name);
+                        dos.writeUTF("You are now signed in :)\n"+"Yor info:\n"+userData+"\nActions Allowed\n"+optionsAllowed+"\n\n"+"Choose your next action");
+                        break;
+
+                    case "Add_Friend":
+                        if (currentUser != null){
+                            dos.writeUTF("Enter friend name");
+                            String friendToAdd = dis.readUTF();
+
+                        }
+                        else{
+                            System.err.println("Please Sign in first");
+                        }
                         break;
 
                     default:
@@ -133,5 +149,21 @@ public class ClientHandler extends Thread{
             e.printStackTrace();
         }
         return false;
+    }
+
+    private String readUserInfo(String username){
+        String fielLoc ="UsersData/"+username+"/Info.txt";
+        try {
+            FileInputStream fis = new FileInputStream(fielLoc);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            String data = br.readLine();
+            data = data.replace('$','\n');
+            return data;
+        } catch (FileNotFoundException e) {
+            return "Not found";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
