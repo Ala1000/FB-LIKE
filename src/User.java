@@ -1,5 +1,7 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by User on 4/28/2018.
@@ -49,6 +51,7 @@ public class User implements Serializable{
             FileOutputStream fos = new FileOutputStream(personalFilesLoc+username+"/info.txt");
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             bw.append(fullname+"$"+dob+"$"+livingLoc+"$"+eduInfo+"$"+username+"$"+password);
+            bw.newLine();
             bw.flush();
             bw.close();
         } catch (FileNotFoundException e) {
@@ -63,6 +66,7 @@ public class User implements Serializable{
             FileOutputStream fos = new FileOutputStream(usersFileLoc,true);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
             bw.append("\n"+this.username+"$"+this.password);
+            bw.newLine();
             bw.flush();
             bw.close();
         } catch (FileNotFoundException e) {
@@ -74,9 +78,10 @@ public class User implements Serializable{
 
     public void sendFriendRequest(String friendName){
         try {
-            FileOutputStream fos = new FileOutputStream(personalFilesLoc+friendName+"/requests.txt");
+            FileOutputStream fos = new FileOutputStream(personalFilesLoc+friendName+"/requests.txt",true);
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-            bw.append("\n"+this.username+" Wants to add you to their friend list");
+            bw.append(this.username+" Wants to add you to their friend list\n");
+            bw.newLine();
             bw.flush();
             bw.close();
         } catch (FileNotFoundException e) {
@@ -85,4 +90,65 @@ public class User implements Serializable{
             e.printStackTrace();
         }
     }
+
+    public List<String> getAllRequests(){
+        List<String> results = new ArrayList<String>();
+        try {
+            FileInputStream fis = new FileInputStream(personalFilesLoc+username+"/requests.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            for (String line; (line = br.readLine()) != null; ) {
+                results.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    public void acceptRequest(String friend){
+        String myFriendsListPath = personalFilesLoc+username+"/friends.txt";
+        String otherFriendsListPath = personalFilesLoc+friend+"/friends.txt";
+        try {
+            FileOutputStream fos1 = new FileOutputStream(myFriendsListPath,true);
+            FileOutputStream fos2 = new FileOutputStream(otherFriendsListPath,true);
+            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos1));
+            BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
+            bw1.newLine();
+            bw2.newLine();
+            bw1.write(friend);
+            bw2.write(username);
+            bw1.flush();bw2.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void emptyFile() {
+        try {
+            PrintWriter pw = new PrintWriter(personalFilesLoc+username+"/requests.txt");
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addPost(String post){
+        try {
+            FileOutputStream fos = new FileOutputStream(personalFilesLoc+username+"/posts.txt");
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            bw.append(post);
+            bw.newLine();
+            bw.flush();
+            bw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

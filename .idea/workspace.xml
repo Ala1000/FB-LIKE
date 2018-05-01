@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="813b049a-9a10-402d-b1d8-613e12571af6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../FbProject/UsersData/user1/requsets.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/out/production/FbProject/ClientHandler.class" afterPath="$PROJECT_DIR$/../FbProject/out/production/FbProject/ClientHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/out/production/FbProject/User.class" afterPath="$PROJECT_DIR$/../FbProject/out/production/FbProject/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../FbProject/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/Users.txt" afterPath="$PROJECT_DIR$/../FbProject/Users.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/UsersData/user1/friends.txt" afterPath="$PROJECT_DIR$/../FbProject/UsersData/user1/friends.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/UsersData/user2/friends.txt" afterPath="$PROJECT_DIR$/../FbProject/UsersData/user2/friends.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/src/ClientHandler.java" afterPath="$PROJECT_DIR$/../FbProject/src/ClientHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/src/Server.java" afterPath="$PROJECT_DIR$/../FbProject/src/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/src/User.java" afterPath="$PROJECT_DIR$/../FbProject/src/User.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../FbProject/out/" />
@@ -22,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/../FbProject/src/Server.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -41,30 +47,31 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../FbProject/src/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
+            <state relative-caret-position="135">
               <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../FbProject/src/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+            <state relative-caret-position="280">
+              <caret line="149" column="31" lean-forward="true" selection-start-line="149" selection-start-column="31" selection-end-line="149" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3187#3195#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="102" column="36" lean-forward="false" selection-start-line="102" selection-start-column="26" selection-end-line="102" selection-end-column="36" />
+            <state relative-caret-position="251">
+              <caret line="144" column="25" lean-forward="false" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -82,6 +89,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>username</find>
+      <find>bw</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -96,10 +104,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../FbProject/src/UserActions.java" />
-        <option value="$PROJECT_DIR$/../FbProject/src/Server.java" />
         <option value="$PROJECT_DIR$/../FbProject/src/Client.java" />
-        <option value="$PROJECT_DIR$/../FbProject/src/ClientHandler.java" />
+        <option value="$PROJECT_DIR$/../FbProject/src/Server.java" />
         <option value="$PROJECT_DIR$/../FbProject/src/User.java" />
+        <option value="$PROJECT_DIR$/../FbProject/src/ClientHandler.java" />
       </list>
     </option>
   </component>
@@ -116,7 +124,7 @@
     <option name="height" value="744" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -130,10 +138,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -604,11 +608,12 @@
       <workItem from="1524923660677" duration="11101000" />
       <workItem from="1525065240591" duration="3626000" />
       <workItem from="1525115829532" duration="3772000" />
+      <workItem from="1525166922957" duration="8459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18499000" />
+    <option name="totallyTimeSpent" value="26958000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -624,7 +629,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -689,39 +694,33 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java</url>
-          <line>176</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java</url>
-          <line>173</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java</url>
-          <line>178</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../FbProject/src/User.java</url>
-          <line>29</line>
+          <line>31</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/../FbProject/src/User.java</url>
-          <line>28</line>
+          <line>30</line>
           <properties class="User" method="prepareUserDir">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -730,6 +729,49 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../FbProject/src/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../FbProject/src/UserActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../FbProject/src/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1734">
+          <caret line="102" column="36" lean-forward="false" selection-start-line="102" selection-start-column="26" selection-end-line="102" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../FbProject/src/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3187#3195#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../FbProject/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -768,6 +810,7 @@
           <caret line="38" column="1" lean-forward="false" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3187#3195#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -810,6 +853,7 @@
           <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3187#3195#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -825,14 +869,25 @@
     <entry file="file://$PROJECT_DIR$/../FbProject/src/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../FbProject/src/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="149" column="31" lean-forward="true" selection-start-line="149" selection-start-column="31" selection-end-line="149" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3187#3195#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../FbProject/src/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="135">
           <caret line="32" column="52" lean-forward="false" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
           <folding />
         </state>
@@ -840,19 +895,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="102" column="36" lean-forward="false" selection-start-line="102" selection-start-column="26" selection-end-line="102" selection-end-column="36" />
+        <state relative-caret-position="251">
+          <caret line="144" column="25" lean-forward="false" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../FbProject/src/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
