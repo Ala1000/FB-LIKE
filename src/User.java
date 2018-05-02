@@ -31,7 +31,7 @@ public class User implements Serializable{
     private void prepareUserDir() {
         File newDir = new File(personalFilesLoc+username);
         if(newDir.mkdir()){
-            File[] files = {new File(personalFilesLoc+username+"/friends.txt"),new File(personalFilesLoc+username+"/info.txt"),new File(personalFilesLoc+username+"/posts.txt"),new File(personalFilesLoc+username+"/requests.txt")};
+            File[] files = {new File(personalFilesLoc+username+"/friends.txt"),new File(personalFilesLoc+username+"/info.txt"),new File(personalFilesLoc+username+"/posts.txt"),new File(personalFilesLoc+username+"/requests.txt"),new File(personalFilesLoc+username+"/messages.txt")};
             for (File file:files) {
                 try {
                     file.createNewFile();
@@ -149,6 +149,24 @@ public class User implements Serializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<String> listFriends(){
+        List<String>friends = new ArrayList<>();
+        try {
+            FileInputStream fis = new FileInputStream(personalFilesLoc+username+"/friends.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            for (String line; (line = br.readLine()) != null; ) {
+                if (!line.isEmpty()){
+                    friends.add(line);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return friends;
     }
 
 }

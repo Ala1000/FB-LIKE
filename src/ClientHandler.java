@@ -144,6 +144,20 @@ public class ClientHandler extends Thread{
                             dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
                         }
                         break;
+                    case "List_Friends":
+                        if (currentUser!= null){
+                            List<String> friends = currentUser.listFriends();
+                            String results = "";
+                            for(String friend:
+                                    friends){
+                                results+= friend+"\n";
+                            }
+                            dos.writeUTF(results+"Please Choose your next action");
+                        }
+                        else{
+                            dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
+                        }
+                        break;
                     default:
                         dos.writeUTF("Invalid input");
                         break;
