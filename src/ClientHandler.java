@@ -3,8 +3,7 @@ import java.net.Socket;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by User on 4/28/2018.
@@ -166,6 +165,41 @@ public class ClientHandler extends Thread{
                             String message = dis.readUTF();
                             currentUser.sendMessage(recipient,message);
                             dos.writeUTF("Message was sent successfully\n Please choose your next action");
+                        }
+
+                        else{
+                            dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
+                        }
+                        break;
+                    case "Show_Wall":
+                        if (currentUser!= null){
+                            HashMap<String,ArrayList<String>> usersPosts = new HashMap<>();
+                            List<String> posts;
+                            posts = currentUser.getAllPosts();
+                            usersPosts.put(currentUser.getUsername(),new ArrayList<>());
+                            for (String post: posts){
+                                usersPosts.get(currentUser.getUsername()).add(post);
+                            }
+                            List<String> friends = currentUser.listFriends();
+                            for(String friend: friends){
+                                usersPosts.put(friend, new ArrayList<>());
+                                posts = User.getAllUserPosts(friend);
+                                for (String post: posts){
+                                    usersPosts.get(friend).add(post);
+                                }
+                            }
+                            String result = "";
+                            Iterator it = usersPosts.entrySet().iterator();
+                            while (it.hasNext()){
+                                Map.Entry pair = (Map.Entry)it.next();
+                                posts = (ArrayList<String>)pair.getValue();
+                                result+= pair.getKey()+" posts:\n*******************************************************\n";
+                                for (String post:posts){
+                                    result+= post+"\n";
+                                }
+                                it.remove();
+                            }
+                            dos.writeUTF(result+"\n"+"Please choose your next action");
                         }
 
                         else{
