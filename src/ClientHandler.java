@@ -158,6 +158,20 @@ public class ClientHandler extends Thread{
                             dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
                         }
                         break;
+                    case "Send_Message":
+                        if (currentUser!= null){
+                            dos.writeUTF("Enter the recipient name");
+                            String recipient = dis.readUTF();
+                            dos.writeUTF("Enter your message");
+                            String message = dis.readUTF();
+                            currentUser.sendMessage(recipient,message);
+                            dos.writeUTF("Message was sent successfully\n Please choose your next action");
+                        }
+
+                        else{
+                            dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
+                        }
+                        break;
                     default:
                         dos.writeUTF("Invalid input");
                         break;

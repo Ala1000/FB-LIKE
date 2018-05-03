@@ -31,7 +31,7 @@ public class User implements Serializable{
     private void prepareUserDir() {
         File newDir = new File(personalFilesLoc+username);
         if(newDir.mkdir()){
-            File[] files = {new File(personalFilesLoc+username+"/friends.txt"),new File(personalFilesLoc+username+"/info.txt"),new File(personalFilesLoc+username+"/posts.txt"),new File(personalFilesLoc+username+"/requests.txt"),new File(personalFilesLoc+username+"/messages.txt")};
+            File[] files = {new File(personalFilesLoc+username+"/friends.txt"),new File(personalFilesLoc+username+"/info.txt"),new File(personalFilesLoc+username+"/posts.txt"),new File(personalFilesLoc+username+"/requests.txt")};
             for (File file:files) {
                 try {
                     file.createNewFile();
@@ -167,6 +167,38 @@ public class User implements Serializable{
             e.printStackTrace();
         }
         return friends;
+    }
+
+    public void sendMessage(String recipient, String message){
+        try{
+            String sender = Integer.parseInt(username.substring(4))<Integer.parseInt(recipient.substring(4))? username:recipient;
+            String reciver = Integer.parseInt(username.substring(4))>Integer.parseInt(recipient.substring(4))? username:recipient;
+            String filename = sender+"-"+reciver+"-chat.txt";
+            File myMessage = new File(personalFilesLoc+username+"/"+filename);
+            File recipientMessage = new File (personalFilesLoc+recipient+"/"+filename);
+            if (!myMessage.exists()){
+                myMessage.createNewFile();
+            }
+            if(!recipientMessage.exists()){
+                recipientMessage.createNewFile();
+            }
+            FileOutputStream fos1 = new FileOutputStream(myMessage,true);
+            FileOutputStream fos2 = new FileOutputStream(recipientMessage,true);
+            BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos1));
+            BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
+            bw1.append(username+":");
+            bw1.newLine();
+            bw1.append(message);
+            bw2.append(username+":");
+            bw2.newLine();
+            bw2.append(message);
+            bw1.newLine();bw2.newLine();
+            bw1.flush();bw2.flush();
+            bw1.close();bw2.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
