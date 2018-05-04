@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by User on 4/28/2018.
+ * The class represents a template for users information and actions.
  */
 public class User implements Serializable{
 
@@ -21,6 +22,18 @@ public class User implements Serializable{
     private String username;
     private String password;
 
+    public User(String username){
+        this.setUsername(username);
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public User(String fullname, Date dob, String livingLoc, String eduInfo, String username, String password) {
         this.fullname = fullname;
         this.dob = dob;
@@ -32,12 +45,22 @@ public class User implements Serializable{
         saveUserInfo();
     }
 
+    /**
+    *This method create a folder for each registered user. The folder (at creation) contains the following files:
+     * info.txt: It contains user info.
+     * friends.txt: List of user friends
+     * posts.txt: contains user's posts.
+     * requests.txt: Requests that the use need to respond to.
+    */
     private void prepareUserDir() {
         File newDir = new File(personalFilesLoc+ getUsername());
+        //Create the folder, and check if it was created successfully.
         if(newDir.mkdir()){
+            //List of files that need to be included in the new users folder
             File[] files = {new File(personalFilesLoc+ getUsername() +"/friends.txt"),new File(personalFilesLoc+ getUsername() +"/info.txt"),new File(personalFilesLoc+ getUsername() +"/posts.txt"),new File(personalFilesLoc+ getUsername() +"/requests.txt")};
             for (File file:files) {
                 try {
+                    //Create the files
                     file.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -46,14 +69,12 @@ public class User implements Serializable{
         }
     }
 
-    public User(String username){
-        this.setUsername(username);
-    }
-
+    //Save user's information in info.txt
     private void saveUserInfo() {
         try {
             FileOutputStream fos = new FileOutputStream(personalFilesLoc+ getUsername() +"/info.txt");
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+            //Separate fields by "$"
             bw.append(fullname+"$"+dob+"$"+livingLoc+"$"+eduInfo+"$"+ getUsername() +"$"+password);
             bw.newLine();
             bw.flush();
@@ -65,6 +86,9 @@ public class User implements Serializable{
         }
     }
 
+    /**
+     * This method adds the user to Users.txt, which contains all registered users.
+     * */
     public void saveUser()  {
         try {
             FileOutputStream fos = new FileOutputStream(usersFileLoc,true);
@@ -80,6 +104,10 @@ public class User implements Serializable{
         }
     }
 
+    /**
+     * @param friendName
+     * The method takes username for the user to be added as friend, and adds it to the other user's requests.txt file
+     */
     public void sendFriendRequest(String friendName){
         try {
             FileOutputStream fos = new FileOutputStream(personalFilesLoc+friendName+"/requests.txt",true);
@@ -95,11 +123,15 @@ public class User implements Serializable{
         }
     }
 
+    /**
+     * This method returns all request in requests.txt.
+     */
     public List<String> getAllRequests(){
         List<String> results = new ArrayList<String>();
         try {
             FileInputStream fis = new FileInputStream(personalFilesLoc+ getUsername() +"/requests.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            //Read all requests
             for (String line; (line = br.readLine()) != null; ) {
                 results.add(line);
             }
@@ -111,10 +143,18 @@ public class User implements Serializable{
         return results;
     }
 
+    /**
+     * @param friend
+     * This method accepts a friendship request by adding current user to friend's "friends.txt file,
+     * And friend to current user's "friends.txt"
+     **/
     public void acceptRequest(String friend){
+        //My friends.txt
         String myFriendsListPath = personalFilesLoc+ getUsername() +"/friends.txt";
+        //My friend's friends.txt
         String otherFriendsListPath = personalFilesLoc+friend+"/friends.txt";
         try {
+            //Add to each other file.
             FileOutputStream fos1 = new FileOutputStream(myFriendsListPath,true);
             FileOutputStream fos2 = new FileOutputStream(otherFriendsListPath,true);
             BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(fos1));
@@ -131,6 +171,9 @@ public class User implements Serializable{
         }
     }
 
+    /**
+     *Clear the requests.txt file once the user have responded to all requests
+     */
     public void emptyFile() {
         try {
             PrintWriter pw = new PrintWriter(personalFilesLoc+ getUsername() +"/requests.txt");
@@ -140,6 +183,10 @@ public class User implements Serializable{
         }
     }
 
+    /**
+     * @param post
+     * This method accepts a post as String and adds it to posts.txt file.
+     */
     public void addPost(String post){
         try {
             FileOutputStream fos = new FileOutputStream(personalFilesLoc+ getUsername() +"/posts.txt");
@@ -155,6 +202,9 @@ public class User implements Serializable{
         }
     }
 
+    /**
+     * This method returns a list of all users in my friends.txt file.
+     */
     public List<String> listFriends(){
         List<String>friends = new ArrayList<>();
         try {
@@ -173,13 +223,23 @@ public class User implements Serializable{
         return friends;
     }
 
+    /**
+     * @param recipient
+     * @param message
+     * This method takes recipient and message as parameters
+     * The recipient is the user who will receive the message
+     * The message is the contents that will be sent to the recipient
+     */
     public void sendMessage(String recipient, String message){
         try{
+            //To avoid the case where two files are created for messages between the same users, the chat file's name will have the user with lower ID first
             String sender = Integer.parseInt(getUsername().substring(4))<Integer.parseInt(recipient.substring(4))? getUsername() :recipient;
             String reciver = Integer.parseInt(getUsername().substring(4))>Integer.parseInt(recipient.substring(4))? getUsername() :recipient;
             String filename = sender+"-"+reciver+"-chat.txt";
+            //Add the file to both user's folders
             File myMessage = new File(personalFilesLoc+ getUsername() +"/"+filename);
             File recipientMessage = new File (personalFilesLoc+recipient+"/"+filename);
+            //Create the files if they don't exit already
             if (!myMessage.exists()){
                 myMessage.createNewFile();
             }
@@ -205,6 +265,10 @@ public class User implements Serializable{
 
     }
 
+    /**
+     * Get All posts in the user's posts.txt
+     * @return posts
+     */
     public ArrayList<String> getAllPosts(){
         ArrayList<String> posts = new ArrayList<>();
         try{
@@ -223,6 +287,11 @@ public class User implements Serializable{
         }
         return posts;
     }
+
+    /**
+     * @param username
+     * @return List of posts for a current user
+     */
     public static List<String> getAllUserPosts(String username){
         ArrayList<String> posts = new ArrayList<>();
         try{
@@ -242,13 +311,6 @@ public class User implements Serializable{
         return posts;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public HashMap<File,String> getAllMessages(){
         HashMap<File,String> friendsMessages = new HashMap<>();
