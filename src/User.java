@@ -1,6 +1,10 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -244,5 +248,70 @@ public class User implements Serializable{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public HashMap<File,String> getAllMessages(){
+        HashMap<File,String> friendsMessages = new HashMap<>();
+        List<String> friends = listFriends();
+        File myFolder = new File(personalFilesLoc+username);
+        File[] listOfFiles = myFolder.listFiles();
+        for (File file : listOfFiles){
+            if(file.isFile()){
+                if (file.getName().contains("chat")){
+                    String lastMessage = getLastMessage(file);
+                    friendsMessages.put(file,lastMessage);
+                }
+            }
+        }
+        return friendsMessages;
+    }
+
+    private String getLastMessage(File file) {
+        String lastLine = "";
+        try {
+            String sCurrentLine;
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader br= new BufferedReader(new InputStreamReader(fis));
+            while ((sCurrentLine = br.readLine()) != null)
+            {
+                lastLine = sCurrentLine;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastLine;
+    }
+
+    public String displayChat(String otherUser){
+        String text="";
+        String filePath = personalFilesLoc+username+"/";
+        try {
+            filePath += Integer.parseInt(getUsername().substring(4))<Integer.parseInt(otherUser.substring(4))? getUsername()+"-"+otherUser+"-chat.txt" : otherUser+"-"+getUsername()+"-chat.txt";
+            text = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return text;
+    }
+
+    public static String getUserInfo(String username){
+        String result="";
+        try{
+            String userFile = personalFilesLoc+username+"/info.txt";
+            String[] userData;
+            FileInputStream fis = new FileInputStream(userFile);
+            BufferedReader bw = new BufferedReader(new InputStreamReader(fis));
+            String data = bw.readLine();
+            userData = data.split("\\$");
+            result = "User "+username+" was found\nAdditional info about the user: \n";
+            result += "BirthDate: "+userData[1]+"\n"+"Living location: "+userData[2]+"\n"+"Eduction Info: "+userData[3];
+         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

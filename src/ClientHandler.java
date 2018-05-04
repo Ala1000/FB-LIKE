@@ -206,6 +206,53 @@ public class ClientHandler extends Thread{
                             dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
                         }
                         break;
+                    case "Show_Inbox":
+                        if (currentUser != null){
+                            HashMap<File,String> allMeesages = currentUser.getAllMessages();
+                            String result = "Your Inbox \n *****************************************************\n";
+                            Iterator it = allMeesages.entrySet().iterator();
+                            while(it.hasNext()){
+                                Map.Entry pair = (Map.Entry)it.next();
+                                String message = (String)pair.getValue();
+                                String[] chatUsers = ((File)pair.getKey()).getName().split("-");
+                                String otherUser = chatUsers[0].contains(currentUser.getUsername())?chatUsers[1]:chatUsers[0];
+                                result+= otherUser+" :\n"+message;
+                            }
+                            dos.writeUTF(result+"\nChoose a user to display your conversations\n");
+                            String otherUser = dis.readUTF();
+                            String chat = currentUser.displayChat(otherUser);
+                            dos.writeUTF(chat+"\nPlease choose your next action");
+                        }
+                        else {
+                            dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
+                        }
+                        break;
+                    case "Search":
+                        if (currentUser!= null){
+                            dos.writeUTF("Enter username to search for");
+                            String userToSearchFor = dis.readUTF();
+                            if(checkUserExists(userToSearchFor)){
+                                dos.writeUTF(User.getUserInfo(userToSearchFor)+"\n"+"Please choose your next action");
+                            }
+                            else{
+                                dos.writeUTF("User not found\nPlease choose your next action");
+                            }
+                        }
+
+                        else{
+                            dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
+                        }
+                        break;
+                    case "LogOff":
+                        if (currentUser!= null){
+                            dos.writeUTF("You have been logged of successfully\nPlease SignIn or SignUp to start a new action");
+                            currentUser=null;
+                        }
+
+                        else{
+                            dos.writeUTF("Please Sign in first\nPlease choose SignIn or SignUp first.");
+                        }
+                        break;
                     default:
                         dos.writeUTF("Invalid input");
                         break;
