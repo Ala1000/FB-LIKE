@@ -218,6 +218,7 @@ public class ClientHandler extends Thread{
                                 String otherUser = chatUsers[0].contains(currentUser.getUsername())?chatUsers[1]:chatUsers[0];
                                 result+= otherUser+" :\n"+message;
                             }
+
                             dos.writeUTF(result+"\nChoose a user to display your conversations\n");
                             String otherUser = dis.readUTF();
                             String chat = currentUser.displayChat(otherUser);

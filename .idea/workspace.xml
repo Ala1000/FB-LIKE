@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="813b049a-9a10-402d-b1d8-613e12571af6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/out/production/FbProject/ClientHandler.class" afterPath="$PROJECT_DIR$/../FbProject/out/production/FbProject/ClientHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/out/production/FbProject/User.class" afterPath="$PROJECT_DIR$/../FbProject/out/production/FbProject/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/.idea/vcs.xml" afterPath="$PROJECT_DIR$/../FbProject/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../FbProject/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/UsersData/user6/requests.txt" afterPath="$PROJECT_DIR$/../FbProject/UsersData/user6/requests.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/UsersData/user7/info.txt" afterPath="$PROJECT_DIR$/../FbProject/UsersData/user7/info.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/UsersData/user7/posts.txt" afterPath="$PROJECT_DIR$/../FbProject/UsersData/user7/posts.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/src/ClientHandler.java" afterPath="$PROJECT_DIR$/../FbProject/src/ClientHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../FbProject/src/User.java" afterPath="$PROJECT_DIR$/../FbProject/src/User.java" />
     </list>
     <ignored path="$PROJECT_DIR$/../FbProject/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,8 +64,8 @@
       <file leaf-file-name="ClientHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="223" column="41" lean-forward="true" selection-start-line="223" selection-start-column="41" selection-end-line="223" selection-end-column="41" />
+            <state relative-caret-position="239">
+              <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -605,12 +604,12 @@
       <workItem from="1525065240591" duration="3626000" />
       <workItem from="1525115829532" duration="3772000" />
       <workItem from="1525166922957" duration="8816000" />
-      <workItem from="1525426987019" duration="6139000" />
+      <workItem from="1525426987019" duration="6616000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33454000" />
+    <option name="totallyTimeSpent" value="33931000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -626,7 +625,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3267974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40849674" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -930,8 +929,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../FbProject/src/ClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="223" column="41" lean-forward="true" selection-start-line="223" selection-start-column="41" selection-end-line="223" selection-end-column="41" />
+        <state relative-caret-position="239">
+          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
           <folding />
         </state>
       </provider>
