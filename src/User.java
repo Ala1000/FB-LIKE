@@ -25,7 +25,7 @@ public class User implements Serializable{
     public User(String username){
         this.setUsername(username);
     }
-    
+
     public String getUsername() {
         return username;
     }
@@ -311,12 +311,17 @@ public class User implements Serializable{
         return posts;
     }
 
-
+    /**
+     * This method returns the last message between this user and other users
+     * @return List of chatting files and the last message between current user and other users.
+     */
     public HashMap<File,String> getAllMessages(){
         HashMap<File,String> friendsMessages = new HashMap<>();
+        //Get all friends
         List<String> friends = listFriends();
         File myFolder = new File(personalFilesLoc+username);
         File[] listOfFiles = myFolder.listFiles();
+        //For each file in my directory, if the file name contains "chat", add the file to the hashmap with the last line in it.
         for (File file : listOfFiles){
             if(file.isFile()){
                 if (file.getName().contains("chat")){
@@ -328,6 +333,10 @@ public class User implements Serializable{
         return friendsMessages;
     }
 
+    /**
+     * @param file as a chatting filr between current user and another one
+     * @return lastLine as the last message in the chatting file
+     */
     private String getLastMessage(File file) {
         String lastLine = "";
         try {
@@ -346,10 +355,15 @@ public class User implements Serializable{
         return lastLine;
     }
 
+    /**
+     * @param otherUser
+     * @return text as the full conversation between this user and otherUser
+     */
     public String displayChat(String otherUser){
         String text="";
         String filePath = personalFilesLoc+username+"/";
         try {
+            //File name depends on which user has lower number
             filePath += Integer.parseInt(getUsername().substring(4))<Integer.parseInt(otherUser.substring(4))? getUsername()+"-"+otherUser+"-chat.txt" : otherUser+"-"+getUsername()+"-chat.txt";
             text = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -358,6 +372,10 @@ public class User implements Serializable{
         return text;
     }
 
+    /**
+     * @param username for the user whom we need his info
+     * @return result as user's info
+     */
     public static String getUserInfo(String username){
         String result="";
         try{

@@ -7,11 +7,16 @@ import java.util.*;
 
 /**
  * Created by User on 4/28/2018.
+ * The class is responsible for sending data/instructions and accepting responses from concurrent users
  */
 public class ClientHandler extends Thread{
+    //This file contains all registered users.
     final static String usersFileLoc = "Users.txt";
+    //This folder contains users folders
     final static String personalFilesLoc = "UsersData/";
+    //Birthday format for user
     DateFormat fordate = new SimpleDateFormat("yyyy/MM/dd");
+    //Allowed options for logged in users
     String optionsAllowed = "AddFriend\nAddPost\nListFriends\nSendMessages\nShowWall\nRespondToRequest\nShowInbox\nSearch\nLogOff";
     final DataInputStream dis;
     final DataOutputStream dos;
@@ -28,8 +33,8 @@ public class ClientHandler extends Thread{
 
     @Override
     public void run() {
+        //this variable contains the client's responce
         String received;
-        String toreturn;
         try {
             // Ask user what he wants
             dos.writeUTF("Please choose the required action..\n" +
@@ -45,15 +50,11 @@ public class ClientHandler extends Thread{
                     System.out.println("Connection closed");
                     break;
                 }
-
-                // creating Date object
-                Date date = new Date();
-
                 // write on output stream based on the
                 // answer from the client
                 switch (received) {
-
                     case "SignUp":
+                        //Fill in new user's info
                         dos.writeUTF("Enter your full name");
                         String name = dis.readUTF();
                         dos.writeUTF("Enter your birth date in dd/MM/yyyy format");
@@ -85,6 +86,7 @@ public class ClientHandler extends Thread{
                         String user_name = dis.readUTF();
                         dos.writeUTF("Enter your password");
                         String password = dis.readUTF();
+                        //Check Users.txt for a user with the received username and password
                         while (!checkUserExists(user_name, password)) {
                             dos.writeUTF("Either username or password is wrong, Please try again\nEnter your username");
                             user_name = dis.readUTF();
@@ -101,6 +103,7 @@ public class ClientHandler extends Thread{
                             dos.writeUTF("Enter friend name");
                             String friendToAdd = dis.readUTF();
                             if (checkUserExists(friendToAdd)) {
+                                //If friend exists, add him/her
                                 currentUser.sendFriendRequest(friendToAdd);
                                 dos.writeUTF("Friend request was sent successfully\n Please choose your next action");
                             }
@@ -118,6 +121,7 @@ public class ClientHandler extends Thread{
                             int endIndex;
                             for (String request:
                                 requests ) {
+                                //Display the request for the client with Accept|Decline
                                 endIndex = request.indexOf(" Wants");
                                 String otherUser = request.substring(0,endIndex);
                                 dos.writeUTF(request+"    Accept|Decline");
@@ -126,6 +130,7 @@ public class ClientHandler extends Thread{
                                     currentUser.acceptRequest(otherUser);
                                 }
                             }
+                            //After client responded to all requests, clean requests.txt
                             currentUser.emptyFile();
                             dos.writeUTF("Yo have no requests left. Please choose your next action");
                         } else {
@@ -147,6 +152,7 @@ public class ClientHandler extends Thread{
                         if (currentUser!= null){
                             List<String> friends = currentUser.listFriends();
                             String results = "";
+                            //Display all friends
                             for(String friend:
                                     friends){
                                 results+= friend+"\n";
@@ -175,11 +181,13 @@ public class ClientHandler extends Thread{
                         if (currentUser!= null){
                             HashMap<String,ArrayList<String>> usersPosts = new HashMap<>();
                             List<String> posts;
+                            //Get posts for current user
                             posts = currentUser.getAllPosts();
                             usersPosts.put(currentUser.getUsername(),new ArrayList<>());
                             for (String post: posts){
                                 usersPosts.get(currentUser.getUsername()).add(post);
                             }
+                            //Get All friend's posts
                             List<String> friends = currentUser.listFriends();
                             for(String friend: friends){
                                 usersPosts.put(friend, new ArrayList<>());
@@ -189,6 +197,7 @@ public class ClientHandler extends Thread{
                                 }
                             }
                             String result = "";
+                            //Iterate on posts and display them
                             Iterator it = usersPosts.entrySet().iterator();
                             while (it.hasNext()){
                                 Map.Entry pair = (Map.Entry)it.next();
@@ -208,6 +217,7 @@ public class ClientHandler extends Thread{
                         break;
                     case "Show_Inbox":
                         if (currentUser != null){
+                            //Show all messages for current user
                             HashMap<File,String> allMeesages = currentUser.getAllMessages();
                             String result = "Your Inbox \n *****************************************************\n";
                             Iterator it = allMeesages.entrySet().iterator();
@@ -229,6 +239,7 @@ public class ClientHandler extends Thread{
                         }
                         break;
                     case "Search":
+                        //Search for a user
                         if (currentUser!= null){
                             dos.writeUTF("Enter username to search for");
                             String userToSearchFor = dis.readUTF();
